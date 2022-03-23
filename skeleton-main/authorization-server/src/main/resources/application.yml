@@ -1,0 +1,16 @@
+server:
+  port: 8083
+
+spring:
+  jpa:
+    defer-datasource-initialization: true
+  datasource:
+    username: ${AUTH_SERVER_DB_USERNAME}
+    url: ${ AUTH_SERVER_DB_URL }
+keycloak:
+  server:
+    contextPath: /auth
+    adminUser:
+      username: ${AUTH_SERVER_KEYCLOAK_USERNAME}
+      password: ${AUTH_SERVER_KEYCLOAK_PASS}
+    realmImportFile: baeldung-realm.json

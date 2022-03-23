@@ -1,0 +1,27 @@
+version: "3"
+services:
+  resource-server:
+    build: ./resource-server
+    container_name: resource-server
+    ports:
+      - "8081:8081"
+
+  angular-ui:
+    build: ./ui/src/main/resources
+    ports:
+      - "8089:8089"
+    container_name: angular-ui
+
+  keycloak:
+    container_name: auth-server
+    build: ./authorization-server
+    env_file: ./.env
+    environment:
+      AUTH_SERVER_KEYCLOAK_USERNAME: $AUTH_SERVER_KEYCLOAK_USERNAME
+      AUTH_SERVER_KEYCLOAK_PASS: $AUTH_SERVER_KEYCLOAK_PASS
+      AUTH_SERVER_DB_USERNAME: $AUTH_SERVER_DB_USERNAME
+      AUTH_SERVER_DB_URL: $AUTH_SERVER_DB_URL
+    ports:
+      - "8083:8083"
+    healthcheck:
+      test: "curl -f http://localhost:8081/auth || exit 1"

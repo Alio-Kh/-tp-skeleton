@@ -1,0 +1,17 @@
+server:
+  port: 8083
+
+spring:
+  jpa:
+    defer-datasource-initialization: true
+  datasource:
+    username: sa
+    url: jdbc:h2:mem:customdb
+
+keycloak:
+  server:
+    contextPath: /auth
+    adminUser:
+      username: TPFullStack
+      password: SuperMdp
+    realmImportFile: baeldung-realm.json
