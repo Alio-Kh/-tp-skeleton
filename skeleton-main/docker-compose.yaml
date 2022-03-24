@@ -9,7 +9,7 @@ services:
   angular-ui:
     build: ./ui/src/main/resources
     ports:
-      - "8089:8089"
+      - "8089:80"
     container_name: angular-ui
 
   keycloak:
