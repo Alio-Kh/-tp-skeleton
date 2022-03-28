@@ -28,12 +28,6 @@ services:
   keycloak:
     container_name: auth-server
     build: ./authorization-server
-    env_file: ./.env
-    environment:
-      AUTH_SERVER_KEYCLOAK_USERNAME: $AUTH_SERVER_KEYCLOAK_USERNAME
-      AUTH_SERVER_KEYCLOAK_PASS: $AUTH_SERVER_KEYCLOAK_PASS
-      AUTH_SERVER_DB_USERNAME: $AUTH_SERVER_DB_USERNAME
-      AUTH_SERVER_DB_URL: $AUTH_SERVER_DB_URL
     ports:
       - "8083:8083"
     networks:
