@@ -1,3 +1,4 @@
+
 version: "3"
 services:
   resource-server:
@@ -5,12 +6,24 @@ services:
     container_name: resource-server
     ports:
       - "8081:8081"
+    links:
+      - keycloak
+    depends_on:
+      - keycloak
+    networks:
+      - skeleton-net
 
   angular-ui:
     build: ./ui/src/main/resources
     ports:
       - "8089:80"
+    links:
+      - resource-server
+    depends_on:
+      - resource-server
     container_name: angular-ui
+    networks:
+      - skeleton-net
 
   keycloak:
     container_name: auth-server
@@ -23,5 +36,13 @@ services:
       AUTH_SERVER_DB_URL: $AUTH_SERVER_DB_URL
     ports:
       - "8083:8083"
+    networks:
+      - skeleton-net
     healthcheck:
-      test: "curl -f http://localhost:8081/auth || exit 1"
+      test: "curl -f http://auth-server/auth || exit 1"
+
+networks:
+  skeleton-net:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"

@@ -2,7 +2,7 @@
 	"hostname": {
 		"provider": "${keycloak.hostname.provider:default}",
 		"fixed": {
-			"hostname": "${keycloak.hostname.fixed.hostname:localhost}",
+			"hostname": "0.0.0.0",
 			"httpPort": "${keycloak.hostname.fixed.httpPort:-1}",
 			"httpsPort": "${keycloak.hostname.fixed.httpsPort:-1}",
 			"alwaysHttps": "${keycloak.hostname.fixed.alwaysHttps:false}"

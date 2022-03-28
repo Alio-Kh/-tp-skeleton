@@ -7,10 +7,14 @@ spring:
   datasource:
     username: sa
     url: jdbc:h2:mem:customdb
+    #username: ${AUTH_SERVER_DB_USERNAME}
+    #url: jdbc:h2:mem:customdb
 keycloak:
   server:
     contextPath: /auth
     adminUser:
       username: TPFullStack
       password: SuperMdp
+      #username: ${AUTH_SERVER_KEYCLOAK_USERNAME}
+      #password: ${AUTH_SERVER_KEYCLOAK_PASS}
     realmImportFile: baeldung-realm.json
